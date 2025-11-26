@@ -1,4 +1,4 @@
-﻿name: Ejemplo CI Docker
+﻿name: Ejemplo CI Docker (Marketplace)
 
 on:
   push:
@@ -9,8 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Mostrar versión de Docker
-        run: docker --version
+      - name: Mensaje desde el runner
+        run: echo "Este mensaje lo escribe el runner normal"
 
-      - name: Ejecutar contenedor hello-world
-        run: docker run hello-world
+      - name: Mensaje desde un contenedor Docker (Marketplace)
+        uses: docker://alpine:3.18
+        with:
+          args: echo "Hola, soy un contenedor Docker ejecutado desde una GitHub Action"
