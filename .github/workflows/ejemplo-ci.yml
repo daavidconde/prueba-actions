@@ -1,12 +1,16 @@
-﻿name: Ejemplo CI
+﻿name: Ejemplo CI Docker
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  say-hello:
+  run-docker:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "Hola desde GitHub Actions"
+      - name: Mostrar versión de Docker
+        run: docker --version
+
+      - name: Ejecutar contenedor hello-world
+        run: docker run hello-world
